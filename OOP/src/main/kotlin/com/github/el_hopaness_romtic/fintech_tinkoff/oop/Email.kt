@@ -1,16 +1,15 @@
 package com.github.el_hopaness_romtic.fintech_tinkoff.oop
 
-class Email(name: String, status: ClientStatus, username: String, domain: String) : Contact(status, name) {
-    inner class EmailAddress(val username: String, val domain: String) {
-        override fun toString() = "$username@$domain"
-    }
+data class EmailAddress(val username: String, val domain: String) {
+    override fun toString() = "$username@$domain"
+}
 
-    private val email = EmailAddress(username, domain)
+class Email(contact: Contact, val email: EmailAddress) : Channel(contact) {
 
-    override fun getClientContact() = "$name ($status): $email"
+    override fun getClientContact() = "${contact.name} (${contact.status}): $email"
 
     override fun sendOffer(text: String) {
         // arguments processing
-        println("\"${text.short()}\" was sent to $status client via EMail ($email)\n")
+        println("\"${text.shorten()}\" was sent to ${contact.status} client via EMail ($email)\n")
     }
 }
