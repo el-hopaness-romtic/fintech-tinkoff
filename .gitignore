@@ -1,3 +1,5 @@
 /.idea/
+/OOP/.gradle/
+/OOP/build/
 /hello_world/.gradle/
 /hello_world/build/
